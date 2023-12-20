@@ -1,8 +1,8 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 //modulo de inicio de sesión de un Usuario
-function Log({usuario, setUsuario, handleLoginClick, setVerBotones}) {
+function Log({ usuario, setUsuario, handleLoginClick, setVerBotones }) {
   const [Cargando, setCargando] = useState(false);
   const [datosUsuario, setDatosUsuario] = useState({
     nombreUsuario: "",
@@ -15,7 +15,7 @@ function Log({usuario, setUsuario, handleLoginClick, setVerBotones}) {
       password: "",
     }));
   };
-//peticion al Backend para ver si el usuario existe en la BD
+  //peticion al Backend para ver si el usuario existe en la BD
   const hacerPeticion = async () => {
     try {
       const res = await axios.post(
@@ -27,7 +27,7 @@ function Log({usuario, setUsuario, handleLoginClick, setVerBotones}) {
       throw error;
     }
   };
-//peticion al Backend para regresar el usuario Iniciado 
+  //peticion al Backend para regresar el usuario Iniciado
   const obtenerUsuario = async () => {
     try {
       const res = await axios.post(
@@ -39,7 +39,7 @@ function Log({usuario, setUsuario, handleLoginClick, setVerBotones}) {
       throw error;
     }
   };
-//prosesamiento de Uusario.
+  //prosesamiento de Uusario.
   const procesarFormulario = async (e) => {
     e.preventDefault();
     setCargando(true);
@@ -62,8 +62,8 @@ function Log({usuario, setUsuario, handleLoginClick, setVerBotones}) {
         handleLoginClick(4);
         setVerBotones({
           usuarioSinRegistro: false,
-          usuarioRegistrado: true
-        })
+          usuarioRegistrado: true,
+        });
       } else {
         alert("Usuario No encontrado");
       }
@@ -82,49 +82,46 @@ function Log({usuario, setUsuario, handleLoginClick, setVerBotones}) {
   };
 
   return (
-    <div>
-      <div className="hero h-screen bg-white">
-        <div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-gray-300">
-            <div className="card-body">
-              <h1 className="text-black text-2xl">Inicia Sesión</h1>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text text-black">
-                    Nombre De Usuario
-                  </span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="Nombre De Usuario"
-                  className="input input-bordered"
-                  onChange={cambiosUsuario}
-                  name="nombreUsuario"
-                  value={datosUsuario.nombreUsuario}
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text text-black">Contraseña</span>
-                </label>
-                <input
-                  type="password"
-                  placeholder="Password"
-                  className="input input-bordered"
-                  onChange={cambiosUsuario}
-                  name="password"
-                  value={datosUsuario.password}
-                />
-              </div>
-              <div className="form-control mt-6">
-                <button
-                  className="btn btn-primary"
-                  type="submit"
-                  disabled={Cargando}
-                  onClick={procesarFormulario}>
-                  Registrarse
-                </button>
-              </div>
+    <div className="hero h-screen bg-white">
+      <div className="hero-content flex-col lg:flex-row-reverse">
+        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-gray-300">
+          <div className="card-body">
+            <h1 className="text-black text-2xl text-center">Inicia Sesión</h1>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text text-black">Nombre De Usuario</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Nombre De Usuario"
+                className="input input-bordered"
+                onChange={cambiosUsuario}
+                name="nombreUsuario"
+                value={datosUsuario.nombreUsuario}
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text text-black">Contraseña</span>
+              </label>
+              <input
+                type="password"
+                placeholder="Password"
+                className="input input-bordered"
+                onChange={cambiosUsuario}
+                name="password"
+                value={datosUsuario.password}
+              />
+            </div>
+            <div className="form-control mt-6">
+              <button
+                className="btn btn-primary"
+                type="submit"
+                disabled={Cargando}
+                onClick={procesarFormulario}
+              >
+                Registrarse
+              </button>
             </div>
           </div>
         </div>

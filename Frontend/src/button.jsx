@@ -2,8 +2,7 @@ import React from "react";
 
 function Button({ handleLoginClick }) {
   return (
-    <>
-    <div className="navbar bg-navfoot flex justify-around">
+    <div className="navbar bg-navfoot flex flex-row justify-around py-5 md:py-0 w-full">
       <button
         type="button"
         className="btn btn-sm bg-boton text-white text-sm"
@@ -26,7 +25,6 @@ function Button({ handleLoginClick }) {
         Productos
       </button>
     </div>
-    </>
   );
 }
 
