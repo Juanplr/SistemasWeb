@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./Home.css";
 import Productos from "./Productos.jsx";
 import LoginVendedor from "./LoginVendedor.jsx";
