@@ -1,5 +1,3 @@
-import React from "react";
-
 function Button({ handleLoginClick }) {
   return (
     <div className="navbar bg-navfoot flex flex-row justify-around py-5 md:py-0 w-full">

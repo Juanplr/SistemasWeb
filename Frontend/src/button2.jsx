@@ -1,5 +1,3 @@
-import React from "react";
-
 function Button2({ handleLoginClick }) {
   return (
     <>

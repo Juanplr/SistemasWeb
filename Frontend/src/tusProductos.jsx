@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 function TusProductos({ usuario }) {
   const [productosData, setProductosData] = useState([]);
 
-  const mapear =()=>{
-    return(
-      productosData.map((producto) => (
+  const mapear = () => {
+    return productosData.map((producto) => (
       <Picture key={producto.id} {...producto} />
-      ))
-    );
-  }
+    ));
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.post("http://localhost:4567/productoUE", usuario);
+        const res = await axios.post(
+          "http://localhost:4567/productoUE",
+          usuario
+        );
         setProductosData(res.data);
       } catch (error) {
         console.error(error);
@@ -24,7 +25,14 @@ function TusProductos({ usuario }) {
     fetchData();
   }, [usuario]);
 
-  const Picture = ({ id, nombreProducto, precio, cantidad, imagen, ubicacion }) => {
+  const Picture = ({
+    id,
+    nombreProducto,
+    precio,
+    cantidad,
+    imagen,
+    ubicacion,
+  }) => {
     const [productoActual, setProductoActual] = useState({
       id,
       nombreProducto,
@@ -32,8 +40,8 @@ function TusProductos({ usuario }) {
       cantidad,
       imagen,
       ubicacion,
-      idUsuario: usuario.id
-    });  
+      idUsuario: usuario.id,
+    });
     const hacerPeticion = async () => {
       try {
         const res = await axios.post(
@@ -48,11 +56,11 @@ function TusProductos({ usuario }) {
 
     const procesarFormulario = async (e) => {
       e.preventDefault();
-  
+
       try {
         const res = await hacerPeticion();
         console.log(res);
-  
+
         if (res.existe) {
           alert("¡Produto actualizado! ");
         } else {
@@ -76,11 +84,11 @@ function TusProductos({ usuario }) {
 
     const publicar = async (e) => {
       e.preventDefault();
-  
+
       try {
         const res = await peticionPublicar();
         console.log(res);
-  
+
         if (res.existe) {
           alert("¡Produto Publicado! ");
         } else {
@@ -105,11 +113,11 @@ function TusProductos({ usuario }) {
 
     const quitarPublicar = async (e) => {
       e.preventDefault();
-  
+
       try {
         const res = await peticionQPublicar();
         console.log(res);
-  
+
         if (res.existe) {
           alert("¡Produto Quitado! ");
         } else {
@@ -134,11 +142,11 @@ function TusProductos({ usuario }) {
 
     const eliminarP = async (e) => {
       e.preventDefault();
-  
+
       try {
         const res = await peticionE();
         console.log(res);
-  
+
         if (res.existe) {
           alert("¡Produto Eliminado! ");
         } else {
@@ -162,46 +170,87 @@ function TusProductos({ usuario }) {
                 className="input input-bordered"
                 type="text"
                 value={productoActual.nombreProducto}
-                onChange={(e) => setProductoActual({ ...productoActual, nombreProducto: e.target.value })}
+                onChange={(e) =>
+                  setProductoActual({
+                    ...productoActual,
+                    nombreProducto: e.target.value,
+                  })
+                }
               />
               <h3 className="card-title">Precio $</h3>
               <input
                 className="input input-bordered"
                 type="text"
                 value={productoActual.precio}
-                onChange={(e) => setProductoActual({ ...productoActual, precio: e.target.value })}
+                onChange={(e) =>
+                  setProductoActual({
+                    ...productoActual,
+                    precio: e.target.value,
+                  })
+                }
               />
               <h3 className="card-title">Cantidad de Productos</h3>
               <input
                 className="input input-bordered"
                 type="text"
                 value={productoActual.cantidad}
-                onChange={(e) => setProductoActual({ ...productoActual, cantidad: e.target.value })}
+                onChange={(e) =>
+                  setProductoActual({
+                    ...productoActual,
+                    cantidad: e.target.value,
+                  })
+                }
               />
               <h3 className="card-title">Imagen</h3>
               <input
                 className="input input-bordered"
                 type="text"
                 value={productoActual.imagen}
-                onChange={(e) => setProductoActual({ ...productoActual, imagen: e.target.value })}
+                onChange={(e) =>
+                  setProductoActual({
+                    ...productoActual,
+                    imagen: e.target.value,
+                  })
+                }
               />
               <h3 className="card-title">Ubicacion</h3>
               <input
                 className="input input-bordered"
                 type="text"
                 value={productoActual.ubicacion}
-                onChange={(e) => setProductoActual({ ...productoActual, ubicacion: e.target.value })}
+                onChange={(e) =>
+                  setProductoActual({
+                    ...productoActual,
+                    ubicacion: e.target.value,
+                  })
+                }
               />
-              <button className="btn btn-primary" type="submit" onClick={procesarFormulario}>
+              <button
+                className="btn btn-primary"
+                type="submit"
+                onClick={procesarFormulario}
+              >
                 Editar
               </button>
-              <button className="btn btn-primary" type="submit" onClick={publicar}>
+              <button
+                className="btn btn-primary"
+                type="submit"
+                onClick={publicar}
+              >
                 Publicar
               </button>
-              <button className="btn btn-primary" type="submit" onClick={quitarPublicar}>
+              <button
+                className="btn btn-primary"
+                type="submit"
+                onClick={quitarPublicar}
+              >
                 Quitar Publicación
               </button>
-              <button className="btn btn-primary" type="submit" onClick={eliminarP}>
+              <button
+                className="btn btn-primary"
+                type="submit"
+                onClick={eliminarP}
+              >
                 Eliminar
               </button>
             </div>
@@ -213,9 +262,7 @@ function TusProductos({ usuario }) {
   return (
     <>
       <div className="h-screen">
-        <div className="flex flex-wrap justify-center bg-white">
-            {mapear()}
-        </div>
+        <div className="flex flex-wrap justify-center bg-white">{mapear()}</div>
       </div>
     </>
   );
