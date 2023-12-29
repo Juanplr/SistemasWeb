@@ -1,22 +1,22 @@
-import React, { useState} from "react";
+import { useState } from "react";
 import axios from "axios";
 
-function RegistroProducto({idU}) {
+function RegistroProducto({ idU }) {
   const [Cargando, setCargando] = useState(false);
   const [productos, setProductos] = useState({
     id: 0,
     nombreProducto: "",
-    precio: 0.00,
+    precio: 0.0,
     cantidad: 0,
     imagen: "",
-    idUsuario:idU
+    idUsuario: idU,
   });
 
   const limpiar = () => {
     setProductos((prev) => ({
       id: 0,
       nombreProducto: "",
-      precio: 0.00,
+      precio: 0.0,
       cantidad: 0,
       imagen: "",
     }));
@@ -24,16 +24,12 @@ function RegistroProducto({idU}) {
 
   const hacerPeticion = async () => {
     try {
-      const res = await axios.post(
-        "http://localhost:4567/producto",
-        productos
-      );
+      const res = await axios.post("http://localhost:4567/producto", productos);
       return res.data;
     } catch (error) {
       throw error;
     }
   };
-
 
   const procesarFormulario = async (e) => {
     e.preventDefault();
@@ -53,7 +49,7 @@ function RegistroProducto({idU}) {
     }
   };
 
-  const cambiosProducto= (e) => {
+  const cambiosProducto = (e) => {
     const { name, value } = e.target;
     setProductos({
       ...productos,
@@ -62,7 +58,7 @@ function RegistroProducto({idU}) {
   };
 
   return (
-    <div className="bg-white flex justify-center">
+    <div className="bg-white flex justify-center h-screen">
       <div className="bg-gray-300 px-5 rounded-xl w-full max-w-sm shadow-2xl m-9">
         <h1 className="text-center text-black text-2xl md:text-3xl m-5">
           Registra tu producto
@@ -99,7 +95,12 @@ function RegistroProducto({idU}) {
             onChange={cambiosProducto}
             name="imagen"
           />
-          <button type="submit" className="btn bg-boton text-white"  disabled={Cargando} onClick={procesarFormulario}>
+          <button
+            type="submit"
+            className="btn bg-boton text-white"
+            disabled={Cargando}
+            onClick={procesarFormulario}
+          >
             Registrar Producto
           </button>
         </div>

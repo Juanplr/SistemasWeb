@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 
 //modulo de inicio de sesión de un Usuario
@@ -120,7 +120,7 @@ function Log({ usuario, setUsuario, handleLoginClick, setVerBotones }) {
                 disabled={Cargando}
                 onClick={procesarFormulario}
               >
-                Registrarse
+                Inicia sesión
               </button>
             </div>
           </div>

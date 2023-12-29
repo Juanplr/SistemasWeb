@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 //Ver productos en la venta
 function Productos() {
@@ -15,7 +15,7 @@ function Productos() {
     };
 
     fetchData();
-  }, []); 
+  }, []);
 
   const Picture = (parametros) => {
     const id = parametros.id;
@@ -27,19 +27,19 @@ function Productos() {
 
     return (
       <a>
-      <div className="text-black" key={id}>
-        <div className="card w-96 shadow-xl m-5 bg-cardFood pt-5">
-          <figure>
-            <img src={url} alt={nombre} className="w-60 h-60" />
-          </figure>
-          <div className="card-body flex text-center">
-            <h1 className="card-title">{nombre}</h1>
-            <h2 className="card-title">${precio}</h2>
-            <h2 className="card-title">{cantidad}</h2>
-            <h2 className="card-title">{ubicacion}</h2>
+        <div className="text-black" key={id}>
+          <div className="card w-96 shadow-xl m-5 bg-cardFood pt-5">
+            <figure>
+              <img src={url} alt={nombre} className="w-60 h-60" />
+            </figure>
+            <div className="card-body flex text-center">
+              <h1 className="card-title">{nombre}</h1>
+              <h2 className="card-title">${precio}</h2>
+              <h2 className="card-title">{cantidad}</h2>
+              <h2 className="card-title">{ubicacion}</h2>
+            </div>
           </div>
         </div>
-      </div>
       </a>
     );
   };
@@ -58,5 +58,3 @@ function Productos() {
 }
 
 export default Productos;
-
-
